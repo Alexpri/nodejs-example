@@ -1,11 +1,18 @@
-var user = require('./user');
+var db = require('./db');
+var log = require('./logger')(module);
+
+db.connect();
+
+var User = require('./user');
 
 
 function run () {
-    var vasya = new user.User("Вася");
-    var petya = new user.User("Петя");
+    var vasya = new User("Vasya");
+    var petya = new User("Petya");
 
     vasya.hello(petya);
+
+    log(db.getPhrase("Run successful"));
 }
 
 
